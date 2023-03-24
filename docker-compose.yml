@@ -1,7 +1,7 @@
 services:
   sh:
     command: /bin/bash
-    image: debian
+    image: physino/redpitaya
     profiles: [ "sh" ]
     environment: # https://docs.docker.com/desktop/networking
       - DISPLAY=host.docker.internal:0.0 # needed for Qt
