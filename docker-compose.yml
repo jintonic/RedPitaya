@@ -1,0 +1,19 @@
+services:
+  sh:
+    command: /bin/bash
+    image: debian
+    profiles: [ "sh" ]
+    environment: # https://docs.docker.com/desktop/networking
+      - DISPLAY=host.docker.internal:0.0 # needed for Qt
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix # needed for Qt
+      - .:/root/RedPitaya
+    # host.docker.internal doesn't exist in a Linux host
+    # https://stackoverflow.com/a/24326540
+    # https://stackoverflow.com/questions/70725881
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # https://docs.docker.com/compose/compose-file/#working_dir
+    working_dir: /root/RedPitaya
+    build: .
+
